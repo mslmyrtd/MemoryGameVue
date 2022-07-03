@@ -1,5 +1,6 @@
 <script setup>
 import Card from './Card.vue';
+import DefaultCard from './DefaultCard.vue';
 </script>
 
 <template>
@@ -11,9 +12,11 @@ import Card from './Card.vue';
       After selecting one of the open cards, click on the face down card.
     </h4>
     <div class="container">
-      <Card/>
+      <Card v-for="card in 5"/>
     </div>
-    <div class="container"></div>
+    <div class="container">
+      <DefaultCard/>
+    </div>
   </div>
 </template>
 
