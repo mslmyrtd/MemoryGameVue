@@ -1,20 +1,23 @@
 <script setup>
 import Card from "./Card.vue";
 import DefaultCard from "./DefaultCard.vue";
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 const cards = ref([
-  { id: 1, component: "app-cards", image: "../src/assets/card-1.jpg" },
-  { id: 2, component: "app-cards", image: "../src/assets/card-2.jpg" },
-  { id: 3, component: "app-cards", image: "../src/assets/card-3.jpg" },
-  { id: 4, component: "app-cards", image: "../src/assets/card-4.jpg" },
-  { id: 5, component: "app-cards", image: "../src/assets/card-5.jpg" },
+  { id: 1, component: "app-card", image: "../src/assets/card-1.jpg" },
+  { id: 2, component: "app-card", image: "../src/assets/card-2.jpg" },
+  { id: 3, component: "app-card", image: "../src/assets/card-3.jpg" },
+  { id: 4, component: "app-card", image: "../src/assets/card-4.jpg" },
+  { id: 5, component: "app-card", image: "../src/assets/card-5.jpg" },
 ]);
 const selectedCard = ref(null);
+// const activeCard=shallowRef(DefaultCard)
 const answer = ref({});
 let k = Math.ceil(Math.random() * cards.value.length);
-answer.value = cards[k - 1];
-</script>
+answer.value=cards._rawValue[k-1]
+console.log(answer);
 
+// const showCard=(answer)=>activeCard.value=answer.component;
+</script>
 <template>
   <div class="game-area">
     <h1 class="title">
@@ -24,15 +27,15 @@ answer.value = cards[k - 1];
       After selecting one of the open cards, click on the face down card.
     </h4>
     <div class="container">
-      <transition-group   name="rotate-all" appear>
+      <transition-group name="rotate-all" appear>
         <Card
-        :key="card.id"
+          :key="card.id"
           v-for="card in cards"
           :card="card"
           @click="selectedCard = card.id"
           :class="{ shadow: selectedCard == card.id }"
         />
-     </transition-group>
+      </transition-group>
     </div>
     <div class="container">
       <DefaultCard />
@@ -68,17 +71,19 @@ answer.value = cards[k - 1];
 }
 /* Animation */
 
-.rotate-all-enter-active{
- animation: rotate-all ease-in-out 2s forwards;
+.rotate-all-enter-active {
+  animation: rotate-all ease-in-out 2s forwards;
 }
-.rotate-all-leave{}
-.rotate-all-leave-active{}
-@keyframes rotate-all{
-from {
-transform: rotateY(0);
+.rotate-all-leave {
 }
-to{
-transform: rotateY(1080deg);
+.rotate-all-leave-active {
 }
+@keyframes rotate-all {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(1080deg);
+  }
 }
 </style>
