@@ -9,10 +9,12 @@ const cards = ref([
   { id: 4, component: "app-cards", image: "../src/assets/card-4.jpg" },
   { id: 5, component: "app-cards", image: "../src/assets/card-5.jpg" },
 ]);
+const selectedCard=ref(null)
 </script>
 
 <template>
   <div class="game-area">
+    {{selectedCard}}
     <h1 class="title">
       <span>Where is the </span>Little Poğaça <strong>?</strong>
     </h1>
@@ -20,7 +22,10 @@ const cards = ref([
       After selecting one of the open cards, click on the face down card.
     </h4>
     <div class="container">
-      <Card v-for="card in cards" :card="card" />
+      <Card v-for="card in cards" :card="card"
+      @click="selectedCard=card.id"
+      :class="{'shadow':selectedCard==card.id}"
+      />
     </div>
     <div class="container">
       <DefaultCard />
@@ -49,5 +54,9 @@ const cards = ref([
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+}
+.shadow{
+  box-shadow:0px 5px 48px #38969f !important;
+  transition: box-shadow .5s;
 }
 </style>
