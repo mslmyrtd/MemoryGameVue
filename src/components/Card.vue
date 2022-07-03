@@ -22,6 +22,6 @@ defineProps(["card"]);
   transition: box-shadow 0.5s;
 }
 .card:first-child {
-  margin-left: 0;
+  margin-left: 10;
 }
 </style>
