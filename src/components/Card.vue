@@ -1,27 +1,27 @@
 <script setup>
-
+defineProps(["card"]);
 </script>
 
 <template>
   <div class="card">
-    <img src="../assets/card-1.jpg" alt="">
+    <img :src="card.image" alt="" />
   </div>
 </template>
 
 <style scoped>
-.card{
+.card {
   width: 200px;
-  height:232px;
+  height: 232px;
   border-radius: 5px;
-  border:1px solid #666;
-   transition: box-shadow .5s;
-   margin-left: 15px;
+  border: 1px solid #666;
+  transition: box-shadow 0.5s;
+  margin-left: 15px;
 }
-.card:hover{
+.card:hover {
   box-shadow: 0px 5px 48px #666;
-  transition: box-shadow .5s;
+  transition: box-shadow 0.5s;
 }
-.card:first-child{
+.card:first-child {
   margin-left: 0;
 }
 </style>
