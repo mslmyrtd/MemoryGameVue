@@ -4,6 +4,5 @@
 
 
 <template>
-
-clebrtae
+<h3>Celebrate</h3>
 </template>
